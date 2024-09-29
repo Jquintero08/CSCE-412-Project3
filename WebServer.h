@@ -5,22 +5,26 @@
 #include <queue>
 #include <iostream>
 
+
 using namespace std;
 
 class WebServer {
 public:
-    WebServer();
+    WebServer(int id);
     ~WebServer();
-    void getReq(const Request& request);
-    void procNextReq();
+
+    void getReq(const Request& request, int currTime);
+    void procNextReq(int currTime);
     bool isAvailable() const;
-    void fakeTime(int cycles);
+    void fakeTime(int currTime);
+
     bool reqQueueIsEmpty() const;
 
 private:
     queue<Request> reqQueue;
     bool available;
-    int remainingTime;
+    int completionTime;
+    int serverID;
 };
 
 #endif

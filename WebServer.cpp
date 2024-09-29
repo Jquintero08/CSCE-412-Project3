@@ -1,60 +1,66 @@
 #include "WebServer.h"
-#include <chrono>
-#include <thread>
 #include <iostream>
 
 using namespace std;
 
+WebServer::WebServer(int id){
+    serverID = id;
+    available = true;
+    completionTime = 0;
+}
 
-WebServer::WebServer() : available(true), remainingTime(0) {}
+WebServer::~WebServer(){}
 
-WebServer::~WebServer() {}
 
-void WebServer::getReq(const Request& request) {
+void WebServer::getReq(const Request& request, int currTime){
     reqQueue.push(request);
-    cout << "Received new request from: " << request.incomingIP << endl << endl;
-    if (available) {
-        procNextReq();
+    cout << endl;
+    cout << "Clock Cycle: " << currTime << endl;
+    cout << "   Server: " << serverID << " (Queuing request)" << endl;
+    cout << "   From: " << request.incomingIP << endl;
+    cout << "   To: " << request.outgoingIP << endl;
+    cout << "   Time: " << request.time << " cycles" << endl;
+
+    if (available){
+        procNextReq(currTime);
     }
 }
 
-void WebServer::fakeTime(int cycles) {
-    if (!available && remainingTime > 0) {
-        remainingTime = remainingTime - cycles;
-        this_thread::sleep_for(chrono::seconds(1));
-        if (remainingTime <= 0) {
+void WebServer::procNextReq(int currTime){
+    if (reqQueue.empty() || !available){
+        return;
+    }
+
+    Request request = reqQueue.front();
+    completionTime = currTime + request.time;
+    available = false;
+    cout << endl;
+    cout << "Clock Cycle: " << currTime << endl;
+    cout << "   Server " << serverID << " (Processing request) " << endl;
+    cout << "   From: "<< request.incomingIP << endl;
+}
+
+
+void WebServer::fakeTime(int currTime){
+    if (!available){
+        if (currTime >= completionTime){
+            cout << endl;
+            cout << "Clock Cycle: " << currTime << endl;
+            cout << "   Server " << serverID << " (Completed request)" << endl;
+            cout << "   From: " << reqQueue.front().incomingIP << endl;
             reqQueue.pop();
             available = true;
-            cout << "Request processed. Server is available." << endl;
-            if (!reqQueue.empty()) {
-                procNextReq(); 
+            
+            if (!reqQueue.empty()){
+                procNextReq(currTime);
             }
         }
     }
 }
 
-
-void WebServer::procNextReq() {
-    if (reqQueue.empty() || !available) {
-        return;
-    }
-
-    const Request& request = reqQueue.front();
-    remainingTime = request.time;
-    available = false;
-
-    cout << "Starting processing request from " << request.incomingIP << " -> " << request.outgoingIP << endl;
-    cout << "Job type: "  << request.jobType << endl;
-    cout << "Processing time: " << request.time << " cycles" << endl;
-    cout << endl;
-}
-
-
-
-bool WebServer::isAvailable() const {
+bool WebServer::isAvailable() const{
     return available && reqQueue.empty();
 }
-
 
 bool WebServer::reqQueueIsEmpty() const {
     return reqQueue.empty();
