@@ -3,11 +3,7 @@
 
 using namespace std;
 
-WebServer::WebServer(int id){
-    serverID = id;
-    available = true;
-    completionTime = 0;
-}
+WebServer::WebServer(int id) : serverID(id), available(true), completionTime(0) {}
 
 WebServer::~WebServer(){}
 
@@ -15,11 +11,11 @@ WebServer::~WebServer(){}
 void WebServer::getReq(const Request& request, int currTime){
     reqQueue.push(request);
     cout << endl;
-    cout << "Clock Cycle: " << currTime << endl;
-    cout << "   Server: " << serverID << " (Queuing request)" << endl;
-    cout << "   From: " << request.incomingIP << endl;
-    cout << "   To: " << request.outgoingIP << endl;
-    cout << "   Time: " << request.time << " cycles" << endl;
+    cout << "Clock Cycle: " << currTime << "<br>" << endl;
+    cout << "   Server: " << serverID << " (Queuing request)<br>" << endl;
+    cout << "   From: " << request.incomingIP << "<br>" << endl;
+    cout << "   To: " << request.outgoingIP << "<br>" << endl;
+    cout << "   Time: " << request.time << " cycles<br>" << endl;
 
     if (available){
         procNextReq(currTime);
@@ -35,9 +31,9 @@ void WebServer::procNextReq(int currTime){
     completionTime = currTime + request.time;
     available = false;
     cout << endl;
-    cout << "Clock Cycle: " << currTime << endl;
-    cout << "   Server " << serverID << " (Processing request) " << endl;
-    cout << "   From: "<< request.incomingIP << endl;
+    cout << "Clock Cycle: " << currTime << "<br>" << endl;
+    cout << "   Server " << serverID << " (Processing request)<br>" << endl;
+    cout << "   From: " << request.incomingIP << "<br>" << endl;
 }
 
 
@@ -45,9 +41,9 @@ void WebServer::fakeTime(int currTime){
     if (!available){
         if (currTime >= completionTime){
             cout << endl;
-            cout << "Clock Cycle: " << currTime << endl;
-            cout << "   Server " << serverID << " (Completed request)" << endl;
-            cout << "   From: " << reqQueue.front().incomingIP << endl;
+            cout << "Clock Cycle: " << currTime << "<br>" << endl;
+            cout << "   Server " << serverID << " (Completed request)<br>" << endl;
+            cout << "   From: " << reqQueue.front().incomingIP << "<br>" << endl;
             reqQueue.pop();
             available = true;
             
@@ -58,10 +54,18 @@ void WebServer::fakeTime(int currTime){
     }
 }
 
+bool WebServer::isIdle() const{
+    return available && reqQueue.empty();
+}
+
 bool WebServer::isAvailable() const{
     return available && reqQueue.empty();
 }
 
 bool WebServer::reqQueueIsEmpty() const {
     return reqQueue.empty();
+}
+
+int WebServer::getServerID() const {
+    return serverID;
 }

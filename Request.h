@@ -10,7 +10,7 @@ struct Request{
     string incomingIP;
     string outgoingIP;
     
-    int time;
+    int time; //Time required to process the job
     char jobType;
 
     Request() : incomingIP(""), outgoingIP(""), time(0), jobType('P'){}
