@@ -4,21 +4,21 @@
 
 using namespace std;
 
-LoadBalancer::LoadBalancer(int maxNumServers)
-    : nextServerID(1), maxNumServers(maxNumServers), minNumServers(2),
-      reqQueueSizeToAdd(5), idleServerCountToRemove(2){
+LoadBalancer::LoadBalancer(size_t maxNumServers)
+    : maxNumServers(maxNumServers), minNumServers(2), nextServerID(1),
+      idleServerCountToRemove(2), reqQueueSizeToAdd(5) {
 
     //Activate initial servers to minimum amount of servers
-    for (int i = 0; i < minNumServers; i++){
+    for (size_t i = 0; i < minNumServers; i++){
         addServer(0);
     }
 }
 
 LoadBalancer::~LoadBalancer() {
-    for (int i = 0; i < runningServers.size(); i++) {
+    for (size_t i = 0; i < runningServers.size(); i++) {
         delete runningServers[i];
     }
-    for (int i = 0; i < notRunningServers.size(); i++) {
+    for (size_t i = 0; i < notRunningServers.size(); i++) {
         delete notRunningServers[i];
     }
 }
@@ -26,7 +26,7 @@ LoadBalancer::~LoadBalancer() {
 
 void LoadBalancer::distributeReq(const Request& request, int currTime){
     bool check = false;
-    for (int i = 0; i < runningServers.size(); i++){
+    for (size_t i = 0; i < runningServers.size(); i++){
         if (runningServers[i]->isAvailable()){
             runningServers[i]->getReq(request, currTime);
             check = true;
@@ -44,7 +44,7 @@ void LoadBalancer::distributeReq(const Request& request, int currTime){
 void LoadBalancer::procQueuedReqs(int currTime){
     while (!reqQueue.empty()){
         bool check = false;
-        for (int i = 0; i < runningServers.size(); i++){
+        for (size_t i = 0; i < runningServers.size(); i++){
             if (runningServers[i]->isAvailable()){
                 runningServers[i]->getReq(reqQueue.front(), currTime);
                 reqQueue.pop();
@@ -60,7 +60,7 @@ void LoadBalancer::procQueuedReqs(int currTime){
 }
 
 void LoadBalancer::simTime(int currTime){
-    for (int i = 0; i < runningServers.size(); i++){
+    for (size_t i = 0; i < runningServers.size(); i++){
         runningServers[i]->fakeTime(currTime);
     }
     procQueuedReqs(currTime);
@@ -92,8 +92,8 @@ void LoadBalancer::addServer(int currTime) {
 
 
 bool LoadBalancer::checkServerUtil(){
-    int idleServers = 0;
-    for (int i = 0; i < runningServers.size(); i++){
+    size_t idleServers = 0;
+    for (size_t i = 0; i < runningServers.size(); i++){
         if (runningServers[i]->isIdle()){
             idleServers++;
         }
@@ -120,7 +120,7 @@ void LoadBalancer::delServer(int currTime){
 
 vector<int> LoadBalancer::getRunningServers() const{
     vector<int> serverIDs;
-    for (int i = 0; i < runningServers.size(); i++){
+    for (size_t i = 0; i < runningServers.size(); i++){
         serverIDs.push_back(runningServers[i]->getServerID()); 
     }
     return serverIDs;

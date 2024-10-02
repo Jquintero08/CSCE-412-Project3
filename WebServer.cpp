@@ -3,7 +3,7 @@
 
 using namespace std;
 
-WebServer::WebServer(int id) : serverID(id), available(true), completionTime(0) {}
+WebServer::WebServer(int id) : available(true), completionTime(0), serverID(id) {}
 
 WebServer::~WebServer(){}
 

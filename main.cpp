@@ -74,7 +74,7 @@ int main(){
 
     vector<int> runningServerIDs = lb.getRunningServers();
     cout << "Active servers: ";
-    for (int i = 0; i < runningServerIDs.size(); i++){
+    for (size_t i = 0; i < runningServerIDs.size(); i++){
         cout << runningServerIDs[i];
         if (i < runningServerIDs.size() - 1){
             cout << ", ";
