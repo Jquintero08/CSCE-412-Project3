@@ -49,7 +49,7 @@ int main(){
 
     LoadBalancer lb(numServers);
 
-    for (int i = 0; i <= numServers * 100; i++){
+    for (int i = 0; i < (numServers * 100)+10; i++){
         int incomingIPPart = i % 255;
         int outgoingIPPart = i % 255;
         int processingTime = (rand() % 71) + 10;
@@ -57,6 +57,8 @@ int main(){
         Request req("136.218.101." + to_string(incomingIPPart), "136.218.102." + to_string(outgoingIPPart), processingTime, jobType);
         lb.distributeReq(req, 0);
     }
+
+    cout << "<br><br><span style=\"color:purple;\">" << "Starting queue size: " << lb.getRequestQueueSize() << "</span><br><br>" << endl;
 
     double newReqProbability = 0.0115;
     //double newReqProbability = 0.0064; //Lowered so the load balancer can be shown (if too high, the queue stays full and no servers can deactivate)
