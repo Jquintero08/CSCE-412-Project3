@@ -12,20 +12,50 @@ Manages web servers and distributes network requests among them.
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_load_balancer_a0c9ed4281450182c76b710a583487363}{Load\+Balancer}} (size\+\_\+t max\+Num\+Servers)
+\mbox{\hyperlink{class_load_balancer_a0c9ed4281450182c76b710a583487363}{Load\+Balancer}} (size\+\_\+t \mbox{\hyperlink{class_load_balancer_afcd63b869bc356291b79094ffd0a2317}{max\+Num\+Servers}})
 \begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_load_balancer}{Load\+Balancer} with a maximum number of servers. \end{DoxyCompactList}\item 
+\Hypertarget{class_load_balancer_a69951a7bb77be7fafd4d5ad6919abd80}\label{class_load_balancer_a69951a7bb77be7fafd4d5ad6919abd80} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Load\+Balancer} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_load_balancer}{Load\+Balancer}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_load_balancer_ae56b9a73ddcdb52980d5390f2ba7bd69}{distribute\+Req}} (const \mbox{\hyperlink{struct_request}{Request}} \&request, int curr\+Time)
-\begin{DoxyCompactList}\small\item\em Gives a request to a server to process only if it is available or adds it to the main queue. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Distributes a request to an available server or adds it to the main queue. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_load_balancer_ae50e1209506da4b238b8aec9d122cbe3}{sim\+Time}} (int curr\+Time)
-\begin{DoxyCompactList}\small\item\em Simulates time step in the system, updates servers and processes queued requests. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Simulates a time step in the system, updating servers and processing queued requests. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_load_balancer_ae03a6669a9dfc19c26f20811f70e2c9c}{get\+Running\+Server\+Count}} () const
 \begin{DoxyCompactList}\small\item\em Returns the number of currently running (active) servers. \end{DoxyCompactList}\item 
 vector$<$ int $>$ \mbox{\hyperlink{class_load_balancer_a4fdab3b7fd1babc229f123515f930108}{get\+Running\+Servers}} () const
 \begin{DoxyCompactList}\small\item\em Returns a vector of IDs of currently running servers. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_load_balancer_a62df7b94c22e8e16b22d2cd758b7824e}{get\+Request\+Queue\+Size}} () const
 \begin{DoxyCompactList}\small\item\em Gets the number of remaining requests in the main queue. \end{DoxyCompactList}\item 
-vector$<$ int $>$ \mbox{\hyperlink{class_load_balancer_a7e1d150d3d33fd80dea013b9ceaa08e7}{get\+Not\+Running\+Servers}} () const
+vector$<$ int $>$ \mbox{\hyperlink{class_load_balancer_a95804a99d62dee4a29c5b983ff208747}{get\+Not\+Running\+Servers}} () const
 \begin{DoxyCompactList}\small\item\em Returns a vector of IDs of servers that are not running (inactive). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_load_balancer_a7e4a8fb719ab4f914083d7378ea52927}{proc\+Queued\+Reqs}} (int curr\+Time)
+\begin{DoxyCompactList}\small\item\em Processes queued requests by giving them to available servers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_load_balancer_aca26571c562e03e4e7d140cc7653078d}{add\+Server}} (int curr\+Time)
+\begin{DoxyCompactList}\small\item\em Adds a new server to handle requests. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_load_balancer_a616e9fd3eb82d23431bedbf1d23aec42}{deactivate\+Server}} (int curr\+Time)
+\begin{DoxyCompactList}\small\item\em Deactivates an idle server to save resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_load_balancer_a40fe4b2c6d75520b3309def428bc38ac}\label{class_load_balancer_a40fe4b2c6d75520b3309def428bc38ac} 
+vector$<$ \mbox{\hyperlink{class_web_server}{Web\+Server}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries running\+Servers}
+\begin{DoxyCompactList}\small\item\em Vector of active servers. \end{DoxyCompactList}\item 
+\Hypertarget{class_load_balancer_a9ddb96858e2e8c287cedc33f0ea171f3}\label{class_load_balancer_a9ddb96858e2e8c287cedc33f0ea171f3} 
+vector$<$ \mbox{\hyperlink{class_web_server}{Web\+Server}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries not\+Running\+Servers}
+\begin{DoxyCompactList}\small\item\em Vector of idle servers. \end{DoxyCompactList}\item 
+\Hypertarget{class_load_balancer_a37deab32b1f570fe02197b9b889c75d2}\label{class_load_balancer_a37deab32b1f570fe02197b9b889c75d2} 
+queue$<$ \mbox{\hyperlink{struct_request}{Request}} $>$ {\bfseries req\+Queue}
+\begin{DoxyCompactList}\small\item\em Main queue of requests waiting to be processed. \end{DoxyCompactList}\item 
+\Hypertarget{class_load_balancer_afcd63b869bc356291b79094ffd0a2317}\label{class_load_balancer_afcd63b869bc356291b79094ffd0a2317} 
+size\+\_\+t {\bfseries max\+Num\+Servers}
+\begin{DoxyCompactList}\small\item\em Maximum number of servers allowed to be activated. \end{DoxyCompactList}\item 
+\Hypertarget{class_load_balancer_a1bd80f5a24a60be7d6ef6b985d757644}\label{class_load_balancer_a1bd80f5a24a60be7d6ef6b985d757644} 
+size\+\_\+t {\bfseries next\+Server\+ID}
+\begin{DoxyCompactList}\small\item\em Next server ID to assign when creating new servers. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -50,6 +80,36 @@ Constructs a \doxylink{class_load_balancer}{Load\+Balancer} with a maximum numbe
 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{class_load_balancer_aca26571c562e03e4e7d140cc7653078d}\index{LoadBalancer@{LoadBalancer}!addServer@{addServer}}
+\index{addServer@{addServer}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{addServer()}{addServer()}}
+{\footnotesize\ttfamily \label{class_load_balancer_aca26571c562e03e4e7d140cc7653078d} 
+void Load\+Balancer\+::add\+Server (\begin{DoxyParamCaption}\item[{int}]{curr\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Adds a new server to handle requests. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em curr\+Time} & The current simulation time. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_load_balancer_a616e9fd3eb82d23431bedbf1d23aec42}\index{LoadBalancer@{LoadBalancer}!deactivateServer@{deactivateServer}}
+\index{deactivateServer@{deactivateServer}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{deactivateServer()}{deactivateServer()}}
+{\footnotesize\ttfamily \label{class_load_balancer_a616e9fd3eb82d23431bedbf1d23aec42} 
+void Load\+Balancer\+::deactivate\+Server (\begin{DoxyParamCaption}\item[{int}]{curr\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Deactivates an idle server to save resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em curr\+Time} & The current simulation time. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_load_balancer_ae56b9a73ddcdb52980d5390f2ba7bd69}\index{LoadBalancer@{LoadBalancer}!distributeReq@{distributeReq}}
 \index{distributeReq@{distributeReq}!LoadBalancer@{LoadBalancer}}
 \doxysubsubsection{\texorpdfstring{distributeReq()}{distributeReq()}}
@@ -58,7 +118,7 @@ void Load\+Balancer\+::distribute\+Req (\begin{DoxyParamCaption}\item[{const \mb
 
 
 
-Gives a request to a server to process only if it is available or adds it to the main queue. 
+Distributes a request to an available server or adds it to the main queue. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -67,11 +127,11 @@ Gives a request to a server to process only if it is available or adds it to the
 {\em curr\+Time} & The current simulation time. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_load_balancer_a7e1d150d3d33fd80dea013b9ceaa08e7}\index{LoadBalancer@{LoadBalancer}!getNotRunningServers@{getNotRunningServers}}
+\Hypertarget{class_load_balancer_a95804a99d62dee4a29c5b983ff208747}\index{LoadBalancer@{LoadBalancer}!getNotRunningServers@{getNotRunningServers}}
 \index{getNotRunningServers@{getNotRunningServers}!LoadBalancer@{LoadBalancer}}
 \doxysubsubsection{\texorpdfstring{getNotRunningServers()}{getNotRunningServers()}}
-{\footnotesize\ttfamily \label{class_load_balancer_a7e1d150d3d33fd80dea013b9ceaa08e7} 
-std\+::vector$<$ int $>$ Load\+Balancer\+::get\+Not\+Running\+Servers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \label{class_load_balancer_a95804a99d62dee4a29c5b983ff208747} 
+vector$<$ int $>$ Load\+Balancer\+::get\+Not\+Running\+Servers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
 
 
 
@@ -119,6 +179,21 @@ Returns a vector of IDs of currently running servers.
 \begin{DoxyReturn}{Returns}
 Vector of active server IDs. 
 \end{DoxyReturn}
+\Hypertarget{class_load_balancer_a7e4a8fb719ab4f914083d7378ea52927}\index{LoadBalancer@{LoadBalancer}!procQueuedReqs@{procQueuedReqs}}
+\index{procQueuedReqs@{procQueuedReqs}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{procQueuedReqs()}{procQueuedReqs()}}
+{\footnotesize\ttfamily \label{class_load_balancer_a7e4a8fb719ab4f914083d7378ea52927} 
+void Load\+Balancer\+::proc\+Queued\+Reqs (\begin{DoxyParamCaption}\item[{int}]{curr\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes queued requests by giving them to available servers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em curr\+Time} & The current simulation time. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_load_balancer_ae50e1209506da4b238b8aec9d122cbe3}\index{LoadBalancer@{LoadBalancer}!simTime@{simTime}}
 \index{simTime@{simTime}!LoadBalancer@{LoadBalancer}}
 \doxysubsubsection{\texorpdfstring{simTime()}{simTime()}}
@@ -127,7 +202,7 @@ void Load\+Balancer\+::sim\+Time (\begin{DoxyParamCaption}\item[{int}]{curr\+Tim
 
 
 
-Simulates time step in the system, updates servers and processes queued requests. 
+Simulates a time step in the system, updating servers and processing queued requests. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -139,4 +214,4 @@ Simulates time step in the system, updates servers and processes queued requests
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{_load_balancer_8h}{Load\+Balancer.\+h}}\item 
-Load\+Balancer.\+cpp\end{DoxyCompactItemize}
+\mbox{\hyperlink{_load_balancer_8cpp}{Load\+Balancer.\+cpp}}\end{DoxyCompactItemize}

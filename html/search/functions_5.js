@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]]
+  ['loadbalancer_0',['LoadBalancer',['../class_load_balancer.html#a0c9ed4281450182c76b710a583487363',1,'LoadBalancer']]]
 ];

@@ -1,3 +1,8 @@
+/**
+ * @file LoadBalancer.cpp
+ * @brief Implements the LoadBalancer class that manages web servers and distributes network requests.
+ */
+ 
 #include "LoadBalancer.h"
 #include <iostream>
 #include <algorithm>
@@ -5,11 +10,10 @@
 using namespace std;
 
 LoadBalancer::LoadBalancer(size_t maxNumServers)
-    : maxNumServers(maxNumServers), minNumServers(2), nextServerID(1),
-      idleServerCountToRemove(2), reqQueueSizeToAdd(5) {
+    : maxNumServers(maxNumServers), nextServerID(1){
 
-    //Activate initial servers to minimum amount of servers
-    for (size_t i = 0; i < minNumServers; i++){
+    //Activate initial servers
+    for (size_t i = 0; i < maxNumServers; i++){
         addServer(0);
     }
 }
@@ -24,7 +28,7 @@ LoadBalancer::~LoadBalancer() {
 }
 
 
-void LoadBalancer::distributeReq(const Request& request, int currTime){
+void LoadBalancer::distributeReq(const Request& request, int currTime){ //gives a new request to a server to process only if it is available or adds it to the main queue
     bool check = false;
     for (size_t i = 0; i < runningServers.size(); i++){
         if (runningServers[i]->isAvailable()){
@@ -41,7 +45,7 @@ void LoadBalancer::distributeReq(const Request& request, int currTime){
 
 
 
-void LoadBalancer::procQueuedReqs(int currTime){
+void LoadBalancer::procQueuedReqs(int currTime){ //Processes queued requests by giving them to a server
     while (!reqQueue.empty()){
         bool check = false;
         for (size_t i = 0; i < runningServers.size(); i++){
@@ -59,61 +63,67 @@ void LoadBalancer::procQueuedReqs(int currTime){
     }
 }
 
-void LoadBalancer::simTime(int currTime){
+void LoadBalancer::simTime(int currTime){ //Simulates time step in the system, updates servers and processes queued requests
     for (size_t i = 0; i < runningServers.size(); i++){
         runningServers[i]->fakeTime(currTime);
     }
-    procQueuedReqs(currTime);
 
-    if ((reqQueue.size() > reqQueueSizeToAdd) && (runningServers.size() < maxNumServers)){
-        addServer(currTime);
-    } else if (runningServers.size() > minNumServers && checkServerUtil()){
-        delServer(currTime);
+
+    size_t numServers = runningServers.size();
+
+    //Deactivate a server if queue size < 3 * number of servers
+    if (reqQueue.size() < 3 * numServers && numServers > 1){
+        deactivateServer(currTime);
     }
+
+    //Activate a server if queue size > 5 * number of servers & there are inactive servers
+    if (reqQueue.size() > 5 * numServers && !notRunningServers.empty()){
+        addServer(currTime);
+    }
+
+    procQueuedReqs(currTime);
 }
 
 void LoadBalancer::addServer(int currTime) {
     WebServer* newServer = nullptr;
 
     if (!notRunningServers.empty()) {
-        newServer = notRunningServers.back(); //Reactivate inactive server first
+        newServer = notRunningServers.back(); //Reactivate inactive server
         notRunningServers.pop_back();
     } else if (nextServerID <= maxNumServers) {
-        newServer = new WebServer(nextServerID++); //Create new server if possible
+        newServer = new WebServer(nextServerID++); //Create new server
     } else {
-        cout << "<span style=\"color:blue;\">Cannot add new server: maximum number of servers reached." << "</span><br>" <<endl; //Max Servers reached (?)
+        //Max number of servers created
         return;
     }
+
     runningServers.push_back(newServer);
     cout << endl;
     cout << "<span style=\"color:green;\">Clock Cycle: " << currTime << "</span><br>" << endl;
+    cout << "   <span style=\"color:green;\">Old Number of Active Servers: " << runningServers.size()-1 << "</span><br>" << endl;
+    cout << "   <span style=\"color:green;\">Queue Size: " << reqQueue.size() << "</span><br>" << endl;
     cout << "   <span style=\"color:green;\">Activated Server " << newServer->getServerID() << "</span><br>" << endl;
+    cout << "   <span style=\"color:green;\">New Number of Active Servers: " << runningServers.size() << "</span><br>" << endl;
+
 }
 
-
-bool LoadBalancer::checkServerUtil(){
-    size_t idleServers = 0;
-    for (size_t i = 0; i < runningServers.size(); i++){
-        if (runningServers[i]->isIdle()){
-            idleServers++;
-        }
-    }
-    return idleServers >= idleServerCountToRemove;
-}
-
-void LoadBalancer::delServer(int currTime){
-    if (!runningServers.empty()){
+void LoadBalancer::deactivateServer(int currTime){
+    if (runningServers.size() > 1){
         for (auto it = runningServers.begin(); it != runningServers.end(); ++it){
             WebServer* server = *it;
-            if (server->isIdle()){
+            if (server->isAvailable()){
                 runningServers.erase(it);
                 notRunningServers.push_back(server);
                 cout << endl;
                 cout << "<span style=\"color:red;\">Clock Cycle: " << currTime << "</span><br>" << endl;
+                cout << "   <span style=\"color:red;\">Old Number of Active Servers: " << runningServers.size()+1 << "</span><br>" << endl;
+                cout << "   <span style=\"color:red;\">Queue Size: " << reqQueue.size() << "</span><br>" << endl;
                 cout << "   <span style=\"color:red;\">Deactivated Server " << server->getServerID() << "</span><br>" << endl;
-                break;
+                cout << "   <span style=\"color:red;\">New Number of Active Servers: " << runningServers.size() << "</span><br>" << endl;
+                return;
             }
         }
+        //If no idle servers are available, do not deactivate any server
     }
 }
 
@@ -134,7 +144,7 @@ int LoadBalancer::getRequestQueueSize() const {
     return reqQueue.size();
 }
 
-std::vector<int> LoadBalancer::getNotRunningServers() const {
+vector<int> LoadBalancer::getNotRunningServers() const {
     vector<int> serverIDs;
     for (size_t i = 0; i < notRunningServers.size(); i++) {
         serverIDs.push_back(notRunningServers[i]->getServerID());

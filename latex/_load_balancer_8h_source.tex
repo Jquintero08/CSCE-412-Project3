@@ -12,42 +12,42 @@
 \DoxyCodeLine{00014\ }
 \DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_load_balancer}{LoadBalancer}}\ \{}
 \DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_load_balancer_a0c9ed4281450182c76b710a583487363}{LoadBalancer}}(\textcolor{keywordtype}{size\_t}\ maxNumServers);}
-\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_load_balancer}{\string~LoadBalancer}}();}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_ae56b9a73ddcdb52980d5390f2ba7bd69}{distributeReq}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_request}{Request}}\&\ request,\ \textcolor{keywordtype}{int}\ currTime);\ \textcolor{comment}{//gives\ a\ request\ to\ a\ server\ to\ process\ only\ if\ it\ is\ available\ or\ adds\ it\ to\ the\ main\ queue}}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_ae50e1209506da4b238b8aec9d122cbe3}{simTime}}(\textcolor{keywordtype}{int}\ currTime);\ \textcolor{comment}{//Simulates\ time\ step\ in\ the\ system,\ updates\ servers\ and\ processes\ queued\ requests}}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_load_balancer_ae03a6669a9dfc19c26f20811f70e2c9c}{getRunningServerCount}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00051\ \ \ \ \ vector<int>\ \mbox{\hyperlink{class_load_balancer_a4fdab3b7fd1babc229f123515f930108}{getRunningServers}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_load_balancer_a62df7b94c22e8e16b22d2cd758b7824e}{getRequestQueueSize}}()\ \textcolor{keyword}{const};\ \textcolor{comment}{//gets\ the\ number\ of\ remaining\ requests\ in\ the\ main\ queue}}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00063\ \ \ \ \ vector<int>\ \mbox{\hyperlink{class_load_balancer_a7e1d150d3d33fd80dea013b9ceaa08e7}{getNotRunningServers}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00066\ \ \ \ \ vector<WebServer*>\ runningServers;\ \textcolor{comment}{//Vector\ of\ active\ servers}}
-\DoxyCodeLine{00067\ \ \ \ \ vector<WebServer*>\ notRunningServers;\ \textcolor{comment}{//Vector\ of\ idle\ servers}}
-\DoxyCodeLine{00068\ \ \ \ \ queue<Request>\ reqQueue;}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ maxNumServers;\ \textcolor{comment}{//Maximum\ amount\ of\ servers\ allowed\ to\ be\ activated}}
-\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ minNumServers;\ \textcolor{comment}{//Minimum\ number\ of\ servers\ allowed\ to\ be\ activated\ (will\ automatically\ start\ up\ upon\ running\ the\ code)}}
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ nextServerID;\ }
-\DoxyCodeLine{00073\ \ \ \ \ }
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ idleServerCountToRemove;\ \textcolor{comment}{//How\ many\ idle\ servers\ before\ removing\ any}}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ reqQueueSizeToAdd;\ \textcolor{comment}{//How\ many\ requests\ in\ queue\ to\ trigger\ the\ activation\ of\ a\ new\ server}}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ procQueuedReqs(\textcolor{keywordtype}{int}\ currTime);\ \textcolor{comment}{//Processes\ queued\ requests\ by\ giving\ them\ to\ a\ server}}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ addServer(\textcolor{keywordtype}{int}\ currTime);}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ delServer(\textcolor{keywordtype}{int}\ currTime);}
-\DoxyCodeLine{00094\ }
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkServerUtil();\ \textcolor{comment}{//Check\ if\ the\ servers\ are\ being\ underutilized}}
-\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_load_balancer_a0c9ed4281450182c76b710a583487363}{LoadBalancer}}(\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_load_balancer_afcd63b869bc356291b79094ffd0a2317}{maxNumServers}});}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_load_balancer_a69951a7bb77be7fafd4d5ad6919abd80}{\string~LoadBalancer}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_ae56b9a73ddcdb52980d5390f2ba7bd69}{distributeReq}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_request}{Request}}\&\ request,\ \textcolor{keywordtype}{int}\ currTime);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_ae50e1209506da4b238b8aec9d122cbe3}{simTime}}(\textcolor{keywordtype}{int}\ currTime);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_load_balancer_ae03a6669a9dfc19c26f20811f70e2c9c}{getRunningServerCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \ \ vector<int>\ \mbox{\hyperlink{class_load_balancer_a4fdab3b7fd1babc229f123515f930108}{getRunningServers}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_load_balancer_a62df7b94c22e8e16b22d2cd758b7824e}{getRequestQueueSize}}()\ \textcolor{keyword}{const};\ \textcolor{comment}{//gets\ the\ number\ of\ remaining\ requests\ in\ the\ main\ queue}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ vector<int>\ \mbox{\hyperlink{class_load_balancer_a95804a99d62dee4a29c5b983ff208747}{getNotRunningServers}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00073\ \ \ \ \ vector<WebServer*>\ \mbox{\hyperlink{class_load_balancer_a40fe4b2c6d75520b3309def428bc38ac}{runningServers}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00078\ \ \ \ \ vector<WebServer*>\ \mbox{\hyperlink{class_load_balancer_a9ddb96858e2e8c287cedc33f0ea171f3}{notRunningServers}};\ \textcolor{comment}{//Vector\ of\ idle\ servers}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00083\ \ \ \ \ queue<Request>\ \mbox{\hyperlink{class_load_balancer_a37deab32b1f570fe02197b9b889c75d2}{reqQueue}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_load_balancer_afcd63b869bc356291b79094ffd0a2317}{maxNumServers}};\ \textcolor{comment}{//Maximum\ amount\ of\ servers\ allowed\ to\ be\ activated}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_load_balancer_a1bd80f5a24a60be7d6ef6b985d757644}{nextServerID}};\ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_a7e4a8fb719ab4f914083d7378ea52927}{procQueuedReqs}}(\textcolor{keywordtype}{int}\ currTime);}
 \DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_aca26571c562e03e4e7d140cc7653078d}{addServer}}(\textcolor{keywordtype}{int}\ currTime);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_a616e9fd3eb82d23431bedbf1d23aec42}{deactivateServer}}(\textcolor{keywordtype}{int}\ currTime);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

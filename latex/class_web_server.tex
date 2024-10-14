@@ -14,20 +14,34 @@ Represents a web server that processes network requests.
 \item 
 \mbox{\hyperlink{class_web_server_a5044757cd8574d3f62a7eec5d51fb00f}{Web\+Server}} (int id)
 \begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_web_server}{Web\+Server} with a unique ID. \end{DoxyCompactList}\item 
+\Hypertarget{class_web_server_a1a0a29895986ab3558a638bc75f41259}\label{class_web_server_a1a0a29895986ab3558a638bc75f41259} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Web\+Server} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_web_server}{Web\+Server}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_web_server_a042ce4043bf520c52562a5479e739ea1}{get\+Req}} (const \mbox{\hyperlink{struct_request}{Request}} \&request, int curr\+Time)
 \begin{DoxyCompactList}\small\item\em Gets request and adds it to the server\textquotesingle{}s request queue (only passes it through though). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_web_server_abd6f635df17582c0e01767eb5c4bf1ec}{proc\+Next\+Req}} (int curr\+Time)
 \begin{DoxyCompactList}\small\item\em Processes the next in queue for the server (the one that was just queued). \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_web_server_a2739c1973665a9fd920dce691a12b9e5}{is\+Available}} () const
-\begin{DoxyCompactList}\small\item\em Checks if server is open and its queue is empty; it is available. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_web_server_a3dc0403ae54b9072865b36a57d7fd6a7}{is\+Idle}} () const
-\begin{DoxyCompactList}\small\item\em Checks if server is open to new requests and queue is empty; set as idle. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Checks if the server is available to process a new request. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_web_server_a8ae4e3ccb02d05fa3d9d759f9b3ae32d}{fake\+Time}} (int curr\+Time)
 \begin{DoxyCompactList}\small\item\em Simulates time for the server and checks if the current request is completed. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_web_server_ac60d87304956ad48b25b261b9b164323}{req\+Queue\+Is\+Empty}} () const
-\begin{DoxyCompactList}\small\item\em Checks if the server\textquotesingle{}s request queue is empty. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_web_server_a2d2f99247da1b35f9ece4e3336eb25b5}{get\+Server\+ID}} () const
 \begin{DoxyCompactList}\small\item\em Gets the server\textquotesingle{}s unique ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_web_server_afa1ec23ac136a1b7cfd05262084c820c}\label{class_web_server_afa1ec23ac136a1b7cfd05262084c820c} 
+queue$<$ \mbox{\hyperlink{struct_request}{Request}} $>$ {\bfseries req\+Queue}
+\begin{DoxyCompactList}\small\item\em Queue of requests to be processed by the server. \end{DoxyCompactList}\item 
+\Hypertarget{class_web_server_a363b73b2e4e2afc0879ff35dc43965ae}\label{class_web_server_a363b73b2e4e2afc0879ff35dc43965ae} 
+bool {\bfseries available}
+\begin{DoxyCompactList}\small\item\em Indicates whether the server is available to process a new request. \end{DoxyCompactList}\item 
+\Hypertarget{class_web_server_a920f994a9c018d2a8500734f33d568fd}\label{class_web_server_a920f994a9c018d2a8500734f33d568fd} 
+int {\bfseries completion\+Time}
+\begin{DoxyCompactList}\small\item\em The time at which the current request will be completed. \end{DoxyCompactList}\item 
+\Hypertarget{class_web_server_ae89ed239bc1cadb5897e90cddeb8e116}\label{class_web_server_ae89ed239bc1cadb5897e90cddeb8e116} 
+int {\bfseries server\+ID}
+\begin{DoxyCompactList}\small\item\em Unique identifier for the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -105,23 +119,10 @@ bool Web\+Server\+::is\+Available (\begin{DoxyParamCaption}{}{}\end{DoxyParamCap
 
 
 
-Checks if server is open and its queue is empty; it is available. 
+Checks if the server is available to process a new request. 
 
 \begin{DoxyReturn}{Returns}
 True if the server is available. 
-\end{DoxyReturn}
-\Hypertarget{class_web_server_a3dc0403ae54b9072865b36a57d7fd6a7}\index{WebServer@{WebServer}!isIdle@{isIdle}}
-\index{isIdle@{isIdle}!WebServer@{WebServer}}
-\doxysubsubsection{\texorpdfstring{isIdle()}{isIdle()}}
-{\footnotesize\ttfamily \label{class_web_server_a3dc0403ae54b9072865b36a57d7fd6a7} 
-bool Web\+Server\+::is\+Idle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
-
-
-
-Checks if server is open to new requests and queue is empty; set as idle. 
-
-\begin{DoxyReturn}{Returns}
-True if the server is idle. 
 \end{DoxyReturn}
 \Hypertarget{class_web_server_abd6f635df17582c0e01767eb5c4bf1ec}\index{WebServer@{WebServer}!procNextReq@{procNextReq}}
 \index{procNextReq@{procNextReq}!WebServer@{WebServer}}
@@ -138,22 +139,9 @@ Processes the next in queue for the server (the one that was just queued).
 {\em curr\+Time} & The current simulation time. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_web_server_ac60d87304956ad48b25b261b9b164323}\index{WebServer@{WebServer}!reqQueueIsEmpty@{reqQueueIsEmpty}}
-\index{reqQueueIsEmpty@{reqQueueIsEmpty}!WebServer@{WebServer}}
-\doxysubsubsection{\texorpdfstring{reqQueueIsEmpty()}{reqQueueIsEmpty()}}
-{\footnotesize\ttfamily \label{class_web_server_ac60d87304956ad48b25b261b9b164323} 
-bool Web\+Server\+::req\+Queue\+Is\+Empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
-
-
-
-Checks if the server\textquotesingle{}s request queue is empty. 
-
-\begin{DoxyReturn}{Returns}
-True if the request queue is empty. 
-\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{_web_server_8h}{Web\+Server.\+h}}\item 
-Web\+Server.\+cpp\end{DoxyCompactItemize}
+\mbox{\hyperlink{_web_server_8cpp}{Web\+Server.\+cpp}}\end{DoxyCompactItemize}

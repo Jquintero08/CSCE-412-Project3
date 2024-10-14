@@ -23,20 +23,24 @@ public:
      * @param maxNumServers Maximum number of servers allowed to be activated.
      */
     LoadBalancer(size_t maxNumServers);
+
+    /**
+     * @brief Destructor for the LoadBalancer.
+     */
     ~LoadBalancer();
 
     /**
-     * @brief Gives a request to a server to process only if it is available or adds it to the main queue.
+     * @brief Distributes a request to an available server or adds it to the main queue.
      * @param request The request to distribute.
      * @param currTime The current simulation time.
      */
-    void distributeReq(const Request& request, int currTime); //gives a request to a server to process only if it is available or adds it to the main queue
+    void distributeReq(const Request& request, int currTime);
 
     /**
-     * @brief Simulates time step in the system, updates servers and processes queued requests.
+     * @brief Simulates a time step in the system, updating servers and processing queued requests.
      * @param currTime The current simulation time.
      */
-    void simTime(int currTime); //Simulates time step in the system, updates servers and processes queued requests
+    void simTime(int currTime);
 
     /**
      * @brief Returns the number of currently running (active) servers.
@@ -63,22 +67,37 @@ public:
     vector<int> getNotRunningServers() const;
 
 private:
-    vector<WebServer*> runningServers; //Vector of active servers
-    vector<WebServer*> notRunningServers; //Vector of idle servers
-    queue<Request> reqQueue;
-
-    size_t maxNumServers; //Maximum amount of servers allowed to be activated
-    size_t minNumServers; //Minimum number of servers allowed to be activated (will automatically start up upon running the code)
-    size_t nextServerID; 
-    
-    size_t idleServerCountToRemove; //How many idle servers before removing any
-    size_t reqQueueSizeToAdd; //How many requests in queue to trigger the activation of a new server
+    /**
+     * @brief Vector of active servers.
+     */
+    vector<WebServer*> runningServers;
 
     /**
-     * @brief Processes queued requests by giving them to a server.
+     * @brief Vector of idle servers.
+     */
+    vector<WebServer*> notRunningServers; //Vector of idle servers
+
+    /**
+     * @brief Main queue of requests waiting to be processed.
+     */
+    queue<Request> reqQueue;
+
+
+    /**
+     * @brief Maximum number of servers allowed to be activated.
+     */
+    size_t maxNumServers; //Maximum amount of servers allowed to be activated
+
+    /**
+     * @brief Next server ID to assign when creating new servers.
+     */
+    size_t nextServerID; 
+
+    /**
+     * @brief Processes queued requests by giving them to available servers.
      * @param currTime The current simulation time.
      */
-    void procQueuedReqs(int currTime); //Processes queued requests by giving them to a server
+    void procQueuedReqs(int currTime);
 
     /**
      * @brief Adds a new server to handle requests.
@@ -90,13 +109,8 @@ private:
      * @brief Deactivates an idle server to save resources.
      * @param currTime The current simulation time.
      */
-    void delServer(int currTime);
+    void deactivateServer(int currTime);
 
-    /**
-     * @brief Checks if the servers are being underutilized.
-     * @return True if servers are underutilized.
-     */
-    bool checkServerUtil(); //Check if the servers are being underutilized
 };
 
 #endif

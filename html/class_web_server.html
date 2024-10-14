@@ -86,6 +86,7 @@ $(function(){ initResizable(false); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_web_server-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">WebServer Class Reference</div></div>
 </div><!--header-->
@@ -101,6 +102,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5044757cd8574d3f62a7eec5d51fb00f" id="r_a5044757cd8574d3f62a7eec5d51fb00f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5044757cd8574d3f62a7eec5d51fb00f">WebServer</a> (int id)</td></tr>
 <tr class="memdesc:a5044757cd8574d3f62a7eec5d51fb00f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="class_web_server.html" title="Represents a web server that processes network requests.">WebServer</a> with a unique ID.  <br /></td></tr>
 <tr class="separator:a5044757cd8574d3f62a7eec5d51fb00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a0a29895986ab3558a638bc75f41259" id="r_a1a0a29895986ab3558a638bc75f41259"><td class="memItemLeft" align="right" valign="top"><a id="a1a0a29895986ab3558a638bc75f41259" name="a1a0a29895986ab3558a638bc75f41259"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~WebServer</b> ()</td></tr>
+<tr class="memdesc:a1a0a29895986ab3558a638bc75f41259"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="class_web_server.html" title="Represents a web server that processes network requests.">WebServer</a>. <br /></td></tr>
+<tr class="separator:a1a0a29895986ab3558a638bc75f41259"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a042ce4043bf520c52562a5479e739ea1" id="r_a042ce4043bf520c52562a5479e739ea1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a042ce4043bf520c52562a5479e739ea1">getReq</a> (const <a class="el" href="struct_request.html">Request</a> &amp;request, int currTime)</td></tr>
 <tr class="memdesc:a042ce4043bf520c52562a5479e739ea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets request and adds it to the server's request queue (only passes it through though).  <br /></td></tr>
 <tr class="separator:a042ce4043bf520c52562a5479e739ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,20 +113,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abd6f635df17582c0e01767eb5c4bf1ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes the next in queue for the server (the one that was just queued).  <br /></td></tr>
 <tr class="separator:abd6f635df17582c0e01767eb5c4bf1ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2739c1973665a9fd920dce691a12b9e5" id="r_a2739c1973665a9fd920dce691a12b9e5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2739c1973665a9fd920dce691a12b9e5">isAvailable</a> () const</td></tr>
-<tr class="memdesc:a2739c1973665a9fd920dce691a12b9e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if server is open and its queue is empty; it is available.  <br /></td></tr>
+<tr class="memdesc:a2739c1973665a9fd920dce691a12b9e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the server is available to process a new request.  <br /></td></tr>
 <tr class="separator:a2739c1973665a9fd920dce691a12b9e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3dc0403ae54b9072865b36a57d7fd6a7" id="r_a3dc0403ae54b9072865b36a57d7fd6a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3dc0403ae54b9072865b36a57d7fd6a7">isIdle</a> () const</td></tr>
-<tr class="memdesc:a3dc0403ae54b9072865b36a57d7fd6a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if server is open to new requests and queue is empty; set as idle.  <br /></td></tr>
-<tr class="separator:a3dc0403ae54b9072865b36a57d7fd6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ae4e3ccb02d05fa3d9d759f9b3ae32d" id="r_a8ae4e3ccb02d05fa3d9d759f9b3ae32d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ae4e3ccb02d05fa3d9d759f9b3ae32d">fakeTime</a> (int currTime)</td></tr>
 <tr class="memdesc:a8ae4e3ccb02d05fa3d9d759f9b3ae32d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulates time for the server and checks if the current request is completed.  <br /></td></tr>
 <tr class="separator:a8ae4e3ccb02d05fa3d9d759f9b3ae32d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac60d87304956ad48b25b261b9b164323" id="r_ac60d87304956ad48b25b261b9b164323"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac60d87304956ad48b25b261b9b164323">reqQueueIsEmpty</a> () const</td></tr>
-<tr class="memdesc:ac60d87304956ad48b25b261b9b164323"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the server's request queue is empty.  <br /></td></tr>
-<tr class="separator:ac60d87304956ad48b25b261b9b164323"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d2f99247da1b35f9ece4e3336eb25b5" id="r_a2d2f99247da1b35f9ece4e3336eb25b5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d2f99247da1b35f9ece4e3336eb25b5">getServerID</a> () const</td></tr>
 <tr class="memdesc:a2d2f99247da1b35f9ece4e3336eb25b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the server's unique ID.  <br /></td></tr>
 <tr class="separator:a2d2f99247da1b35f9ece4e3336eb25b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:afa1ec23ac136a1b7cfd05262084c820c" id="r_afa1ec23ac136a1b7cfd05262084c820c"><td class="memItemLeft" align="right" valign="top"><a id="afa1ec23ac136a1b7cfd05262084c820c" name="afa1ec23ac136a1b7cfd05262084c820c"></a>
+queue&lt; <a class="el" href="struct_request.html">Request</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>reqQueue</b></td></tr>
+<tr class="memdesc:afa1ec23ac136a1b7cfd05262084c820c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queue of requests to be processed by the server. <br /></td></tr>
+<tr class="separator:afa1ec23ac136a1b7cfd05262084c820c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a363b73b2e4e2afc0879ff35dc43965ae" id="r_a363b73b2e4e2afc0879ff35dc43965ae"><td class="memItemLeft" align="right" valign="top"><a id="a363b73b2e4e2afc0879ff35dc43965ae" name="a363b73b2e4e2afc0879ff35dc43965ae"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>available</b></td></tr>
+<tr class="memdesc:a363b73b2e4e2afc0879ff35dc43965ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the server is available to process a new request. <br /></td></tr>
+<tr class="separator:a363b73b2e4e2afc0879ff35dc43965ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a920f994a9c018d2a8500734f33d568fd" id="r_a920f994a9c018d2a8500734f33d568fd"><td class="memItemLeft" align="right" valign="top"><a id="a920f994a9c018d2a8500734f33d568fd" name="a920f994a9c018d2a8500734f33d568fd"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>completionTime</b></td></tr>
+<tr class="memdesc:a920f994a9c018d2a8500734f33d568fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time at which the current request will be completed. <br /></td></tr>
+<tr class="separator:a920f994a9c018d2a8500734f33d568fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae89ed239bc1cadb5897e90cddeb8e116" id="r_ae89ed239bc1cadb5897e90cddeb8e116"><td class="memItemLeft" align="right" valign="top"><a id="ae89ed239bc1cadb5897e90cddeb8e116" name="ae89ed239bc1cadb5897e90cddeb8e116"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>serverID</b></td></tr>
+<tr class="memdesc:ae89ed239bc1cadb5897e90cddeb8e116"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the server. <br /></td></tr>
+<tr class="separator:ae89ed239bc1cadb5897e90cddeb8e116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a web server that processes network requests. </p>
@@ -242,28 +260,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if server is open and its queue is empty; it is available. </p>
+<p>Checks if the server is available to process a new request. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if the server is available. </dd></dl>
-
-</div>
-</div>
-<a id="a3dc0403ae54b9072865b36a57d7fd6a7" name="a3dc0403ae54b9072865b36a57d7fd6a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3dc0403ae54b9072865b36a57d7fd6a7">&#9670;&#160;</a></span>isIdle()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool WebServer::isIdle </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks if server is open to new requests and queue is empty; set as idle. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if the server is idle. </dd></dl>
 
 </div>
 </div>
@@ -292,29 +290,9 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac60d87304956ad48b25b261b9b164323" name="ac60d87304956ad48b25b261b9b164323"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac60d87304956ad48b25b261b9b164323">&#9670;&#160;</a></span>reqQueueIsEmpty()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool WebServer::reqQueueIsEmpty </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks if the server's request queue is empty. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if the request queue is empty. </dd></dl>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_web_server_8h_source.html">WebServer.h</a></li>
-<li><b>WebServer.cpp</b></li>
+<li><a class="el" href="_web_server_8cpp.html">WebServer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

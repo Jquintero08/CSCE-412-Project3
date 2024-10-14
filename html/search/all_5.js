@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]],
-  ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]]
+  ['incomingip_0',['incomingIP',['../struct_request.html#a7caad431f773660f46ccbc68b8836116',1,'Request']]],
+  ['isavailable_1',['isAvailable',['../class_web_server.html#a2739c1973665a9fd920dce691a12b9e5',1,'WebServer']]]
 ];

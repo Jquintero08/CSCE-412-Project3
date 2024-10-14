@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['faketime_0',['fakeTime',['../class_web_server.html#a8ae4e3ccb02d05fa3d9d759f9b3ae32d',1,'WebServer']]]
+  ['deactivateserver_0',['deactivateServer',['../class_load_balancer.html#a616e9fd3eb82d23431bedbf1d23aec42',1,'LoadBalancer']]],
+  ['distributereq_1',['distributeReq',['../class_load_balancer.html#ae56b9a73ddcdb52980d5390f2ba7bd69',1,'LoadBalancer']]]
 ];

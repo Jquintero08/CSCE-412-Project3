@@ -24,6 +24,10 @@ public:
      * @param id Unique identifier for the server.
      */
     WebServer(int id);
+
+    /**
+     * @brief Destructor for the WebServer.
+     */
     ~WebServer();
 
     /**
@@ -40,16 +44,10 @@ public:
     void procNextReq(int currTime);
 
     /**
-     * @brief Checks if server is open and its queue is empty; it is available.
+     * @brief Checks if the server is available to process a new request.
      * @return True if the server is available.
      */
     bool isAvailable() const;
-
-    /**
-     * @brief Checks if server is open to new requests and queue is empty; set as idle.
-     * @return True if the server is idle.
-     */
-    bool isIdle() const;
 
     /**
      * @brief Simulates time for the server and checks if the current request is completed.
@@ -58,21 +56,31 @@ public:
     void fakeTime(int currTime);
 
     /**
-     * @brief Checks if the server's request queue is empty.
-     * @return True if the request queue is empty.
-     */
-    bool reqQueueIsEmpty() const;
-
-    /**
      * @brief Gets the server's unique ID.
      * @return The server's ID.
      */
     int getServerID() const; 
 
 private:
+
+    /**
+     * @brief Queue of requests to be processed by the server.
+     */
     queue<Request> reqQueue;
+
+    /**
+     * @brief Indicates whether the server is available to process a new request.
+     */
     bool available;
+
+    /**
+     * @brief The time at which the current request will be completed.
+     */
     int completionTime;
+
+    /**
+     * @brief Unique identifier for the server.
+     */
     int serverID;
 };
 

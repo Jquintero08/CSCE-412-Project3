@@ -16,10 +16,24 @@ using namespace std;
  * @brief Represents a network request with IP addresses, processing time, and job type.
  */
 struct Request{
+    /**
+     * @brief The incoming IP address.
+     */
     string incomingIP;
+
+    /**
+     * @brief The outgoing IP address.
+     */
     string outgoingIP;
-    
-    int time; //Time required to process the job
+
+    /**
+     * @brief Time required to process the job.
+     */
+    int time;
+
+    /**
+     * @brief Job type ('P' for processing, 'S' for streaming).
+     */
     char jobType;
 
     /**

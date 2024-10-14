@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['isavailable_0',['isAvailable',['../class_web_server.html#a2739c1973665a9fd920dce691a12b9e5',1,'WebServer']]],
-  ['isidle_1',['isIdle',['../class_web_server.html#a3dc0403ae54b9072865b36a57d7fd6a7',1,'WebServer']]]
+  ['faketime_0',['fakeTime',['../class_web_server.html#a8ae4e3ccb02d05fa3d9d759f9b3ae32d',1,'WebServer']]]
 ];

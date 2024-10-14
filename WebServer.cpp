@@ -1,3 +1,8 @@
+/**
+ * @file WebServer.cpp
+ * @brief Implements the WebServer class for processing network requests.
+ */
+
 #include "WebServer.h"
 #include <iostream>
 
@@ -55,16 +60,8 @@ void WebServer::fakeTime(int currTime){
     }
 }
 
-bool WebServer::isIdle() const{
-    return available && reqQueue.empty();
-}
-
 bool WebServer::isAvailable() const{
     return available && reqQueue.empty();
-}
-
-bool WebServer::reqQueueIsEmpty() const {
-    return reqQueue.empty();
 }
 
 int WebServer::getServerID() const {
