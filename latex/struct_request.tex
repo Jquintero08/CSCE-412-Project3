@@ -1,0 +1,66 @@
+\doxysection{Request Struct Reference}
+\hypertarget{struct_request}{}\label{struct_request}\index{Request@{Request}}
+
+
+Represents a network request with IP addresses, processing time, and job type.  
+
+
+
+
+{\ttfamily \#include $<$Request.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_request_afaf8d8928de7ffff8a3767589489bd33}\label{struct_request_afaf8d8928de7ffff8a3767589489bd33} 
+{\bfseries Request} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing members to default values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_request_a63f5c571f24f824805adc508d6fca4bf}{Request}} (const string \&in, const string \&out, int t, char type)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor to initialize a request with specific values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_request_a7caad431f773660f46ccbc68b8836116}\label{struct_request_a7caad431f773660f46ccbc68b8836116} 
+string {\bfseries incoming\+IP}
+\item 
+\Hypertarget{struct_request_a3f7eb9694fb80ef13bc3abbfa4adfc0d}\label{struct_request_a3f7eb9694fb80ef13bc3abbfa4adfc0d} 
+string {\bfseries outgoing\+IP}
+\item 
+\Hypertarget{struct_request_a3cfb576ed0b5e08612f3de8bc7cd72e2}\label{struct_request_a3cfb576ed0b5e08612f3de8bc7cd72e2} 
+int {\bfseries time}
+\item 
+\Hypertarget{struct_request_ad49a0f18615ea50f9a11cd2494c93044}\label{struct_request_ad49a0f18615ea50f9a11cd2494c93044} 
+char {\bfseries job\+Type}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a network request with IP addresses, processing time, and job type. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_request_a63f5c571f24f824805adc508d6fca4bf}\index{Request@{Request}!Request@{Request}}
+\index{Request@{Request}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{Request()}{Request()}}
+{\footnotesize\ttfamily \label{struct_request_a63f5c571f24f824805adc508d6fca4bf} 
+Request\+::\+Request (\begin{DoxyParamCaption}\item[{const string \&}]{in}{, }\item[{const string \&}]{out}{, }\item[{int}]{t}{, }\item[{char}]{type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parameterized constructor to initialize a request with specific values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Incoming IP address. \\
+\hline
+{\em out} & Outgoing IP address. \\
+\hline
+{\em t} & Processing time in clock cycles. \\
+\hline
+{\em type} & Job type (\textquotesingle{}P\textquotesingle{} for processing, \textquotesingle{}S\textquotesingle{} for streaming). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_request_8h}{Request.\+h}}\end{DoxyCompactItemize}

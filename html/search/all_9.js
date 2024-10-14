@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['webserver_0',['WebServer',['../class_web_server.html',1,'WebServer'],['../class_web_server.html#a5044757cd8574d3f62a7eec5d51fb00f',1,'WebServer::WebServer()']]],
+  ['webserver_2eh_1',['WebServer.h',['../_web_server_8h.html',1,'']]]
+];

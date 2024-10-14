@@ -1,0 +1,43 @@
+\doxysection{Web\+Server.\+h}
+\hypertarget{_web_server_8h_source}{}\label{_web_server_8h_source}\mbox{\hyperlink{_web_server_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ WEBSERVER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ WEBSERVER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_request_8h}{Request.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_web_server}{WebServer}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_web_server_a5044757cd8574d3f62a7eec5d51fb00f}{WebServer}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_web_server}{\string~WebServer}}();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_web_server_a042ce4043bf520c52562a5479e739ea1}{getReq}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_request}{Request}}\&\ request,\ \textcolor{keywordtype}{int}\ currTime);\ \textcolor{comment}{//Gets\ request\ and\ adds\ it\ to\ the\ server's\ request\ queue\ (only\ passes\ it\ through\ though)}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_web_server_abd6f635df17582c0e01767eb5c4bf1ec}{procNextReq}}(\textcolor{keywordtype}{int}\ currTime);\ \textcolor{comment}{//Processes\ the\ next\ in\ queue\ for\ the\ server\ (the\ one\ that\ was\ just\ queued)}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_web_server_a2739c1973665a9fd920dce691a12b9e5}{isAvailable}}()\ \textcolor{keyword}{const};\ \textcolor{comment}{//If\ server\ is\ open\ and\ its\ queue\ is\ empty,\ it\ is\ available\ (these\ two\ are\ the\ same,\ but\ it\ was\ easier\ for\ me\ to\ know\ what\ the\ use\ case\ was\ by\ differentiating\ the\ two)}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_web_server_a3dc0403ae54b9072865b36a57d7fd6a7}{isIdle}}()\ \textcolor{keyword}{const};\ \textcolor{comment}{//If\ server\ is\ open\ to\ new\ requests\ and\ queue\ is\ empty,\ set\ as\ idle}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_web_server_a8ae4e3ccb02d05fa3d9d759f9b3ae32d}{fakeTime}}(\textcolor{keywordtype}{int}\ currTime);\ \textcolor{comment}{//Simulates\ time\ for\ the\ server\ and\ checks\ if\ the\ current\ request\ is\ completed.}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_web_server_ac60d87304956ad48b25b261b9b164323}{reqQueueIsEmpty}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_web_server_a2d2f99247da1b35f9ece4e3336eb25b5}{getServerID}}()\ \textcolor{keyword}{const};\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00073\ \ \ \ \ queue<Request>\ reqQueue;\ \textcolor{comment}{//Each\ server's\ queue.\ (only\ can\ pass\ in\ a\ request\ though)}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//I\ got\ the\ instructions\ wrong\ and\ thought\ each\ server\ had\ its\ own\ queue,\ so\ instead\ of\ refactoring\ my\ entire\ code,\ I\ made\ it\ to\ where\ the\ queue\ is\ just\ used\ to\ pass\ requests\ in\ rather\ than\ hold\ them}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{bool}\ available;}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{int}\ completionTime;}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{int}\ serverID;}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

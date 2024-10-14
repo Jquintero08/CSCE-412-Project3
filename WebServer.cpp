@@ -16,6 +16,7 @@ void WebServer::getReq(const Request& request, int currTime){
     cout << "   From: " << request.incomingIP << "<br>" << endl;
     cout << "   To: " << request.outgoingIP << "<br>" << endl;
     cout << "   Time: " << request.time << " cycles<br>" << endl;
+    cout << "   Job Type: " << request.jobType << "<br>" << endl;
 
     if (available){
         procNextReq(currTime);

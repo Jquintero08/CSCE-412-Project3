@@ -1,3 +1,8 @@
+/**
+ * @file main.cpp
+ * @brief The main driver program for the load balancer simulation.
+ */
+
 #include <fstream>
 #include <vector>
 #include <ctime>
@@ -8,6 +13,10 @@
 
 using namespace std;
 
+/**
+ * @brief The main function that runs the simulation.
+ * @return int Exit status.
+ */
 int main(){
     int numServers;
     int simTime;
@@ -46,13 +55,14 @@ int main(){
     for (int i = 0; i < numServers * 100; i++){
         int incomingIPPart = i % 255;
         int outgoingIPPart = i % 255;
-        int processingTime = (rand() % 141) + 10;
-        Request req("136.218.101." + to_string(incomingIPPart), "136.218.102." + to_string(outgoingIPPart), processingTime, 'P');
+        int processingTime = (rand() % 121) + 10;
+        char jobType = (rand() % 2 == 0) ? 'P' : 'S';
+        Request req("136.218.101." + to_string(incomingIPPart), "136.218.102." + to_string(outgoingIPPart), processingTime, jobType);
         lb.distributeReq(req, 0);
     }
 
     //double newReqProbability = 0.01;
-    double newReqProbability = 0.0054; //Lowered so the load balancer can be shown (if too high, the queue stays full and no servers can deactivate)
+    double newReqProbability = 0.0064; //Lowered so the load balancer can be shown (if too high, the queue stays full and no servers can deactivate)
 
     for (int currTime = 1; currTime <= simTime; currTime++){
         lb.simTime(currTime);

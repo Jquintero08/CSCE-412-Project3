@@ -1,0 +1,27 @@
+\doxysection{Request.\+h}
+\hypertarget{_request_8h_source}{}\label{_request_8h_source}\mbox{\hyperlink{_request_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ REQUEST\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ REQUEST\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_request}{Request}}\{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{string}\ incomingIP;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{string}\ outgoingIP;}
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ time;\ \textcolor{comment}{//Time\ required\ to\ process\ the\ job}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{char}\ jobType;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{struct_request_afaf8d8928de7ffff8a3767589489bd33}{Request}}()\ :\ incomingIP(\textcolor{stringliteral}{"{}"{}}),\ outgoingIP(\textcolor{stringliteral}{"{}"{}}),\ time(0),\ jobType(\textcolor{stringliteral}{'P'})\{\}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{struct_request_a63f5c571f24f824805adc508d6fca4bf}{Request}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ in,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ out,\ \textcolor{keywordtype}{int}\ t,\ \textcolor{keywordtype}{char}\ type):\ incomingIP(in),\ outgoingIP(out),\ time(t),\ jobType(type)\{\}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

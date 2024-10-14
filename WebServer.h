@@ -1,6 +1,11 @@
 #ifndef WEBSERVER_H
 #define WEBSERVER_H
 
+/**
+ * @file WebServer.h
+ * @brief Declares the WebServer class for processing network requests.
+ */
+
 #include "Request.h"
 #include <queue>
 #include <iostream>
@@ -8,23 +13,64 @@
 
 using namespace std;
 
+/**
+ * @class WebServer
+ * @brief Represents a web server that processes network requests.
+ */
 class WebServer {
 public:
+    /**
+     * @brief Constructs a WebServer with a unique ID.
+     * @param id Unique identifier for the server.
+     */
     WebServer(int id);
     ~WebServer();
 
-    void getReq(const Request& request, int currTime); //Gets request and adds it to the server's request queue (only passes it through though)
-    void procNextReq(int currTime); //Processes the next in queue for the server (the one that was just queued)
-    bool isAvailable() const; //If server is open and its queue is empty, it is available (these two are the same, but it was easier for me to know what the use case was by differentiating the two)
-    bool isIdle() const; //If server is open to new requests and queue is empty, set as idle
-    void fakeTime(int currTime); //Simulates time for the server and checks if the current request is completed.
+    /**
+     * @brief Gets request and adds it to the server's request queue (only passes it through though).
+     * @param request The request to process.
+     * @param currTime The current simulation time.
+     */
+    void getReq(const Request& request, int currTime);
 
+    /**
+     * @brief Processes the next in queue for the server (the one that was just queued).
+     * @param currTime The current simulation time.
+     */
+    void procNextReq(int currTime);
+
+    /**
+     * @brief Checks if server is open and its queue is empty; it is available.
+     * @return True if the server is available.
+     */
+    bool isAvailable() const;
+
+    /**
+     * @brief Checks if server is open to new requests and queue is empty; set as idle.
+     * @return True if the server is idle.
+     */
+    bool isIdle() const;
+
+    /**
+     * @brief Simulates time for the server and checks if the current request is completed.
+     * @param currTime The current simulation time.
+     */
+    void fakeTime(int currTime);
+
+    /**
+     * @brief Checks if the server's request queue is empty.
+     * @return True if the request queue is empty.
+     */
     bool reqQueueIsEmpty() const;
+
+    /**
+     * @brief Gets the server's unique ID.
+     * @return The server's ID.
+     */
     int getServerID() const; 
 
 private:
-    queue<Request> reqQueue; //Each server's queue. (only can pass in a request though)
-    //I got the instructions wrong and thought each server had its own queue, so instead of refactoring my entire code, I made it to where the queue is just used to pass requests in rather than hold them
+    queue<Request> reqQueue;
     bool available;
     int completionTime;
     int serverID;

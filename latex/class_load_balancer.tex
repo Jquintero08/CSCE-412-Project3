@@ -1,0 +1,142 @@
+\doxysection{Load\+Balancer Class Reference}
+\hypertarget{class_load_balancer}{}\label{class_load_balancer}\index{LoadBalancer@{LoadBalancer}}
+
+
+Manages web servers and distributes network requests among them.  
+
+
+
+
+{\ttfamily \#include $<$Load\+Balancer.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_load_balancer_a0c9ed4281450182c76b710a583487363}{Load\+Balancer}} (size\+\_\+t max\+Num\+Servers)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_load_balancer}{Load\+Balancer} with a maximum number of servers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_load_balancer_ae56b9a73ddcdb52980d5390f2ba7bd69}{distribute\+Req}} (const \mbox{\hyperlink{struct_request}{Request}} \&request, int curr\+Time)
+\begin{DoxyCompactList}\small\item\em Gives a request to a server to process only if it is available or adds it to the main queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_load_balancer_ae50e1209506da4b238b8aec9d122cbe3}{sim\+Time}} (int curr\+Time)
+\begin{DoxyCompactList}\small\item\em Simulates time step in the system, updates servers and processes queued requests. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_load_balancer_ae03a6669a9dfc19c26f20811f70e2c9c}{get\+Running\+Server\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of currently running (active) servers. \end{DoxyCompactList}\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_load_balancer_a4fdab3b7fd1babc229f123515f930108}{get\+Running\+Servers}} () const
+\begin{DoxyCompactList}\small\item\em Returns a vector of IDs of currently running servers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_load_balancer_a62df7b94c22e8e16b22d2cd758b7824e}{get\+Request\+Queue\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of remaining requests in the main queue. \end{DoxyCompactList}\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_load_balancer_a7e1d150d3d33fd80dea013b9ceaa08e7}{get\+Not\+Running\+Servers}} () const
+\begin{DoxyCompactList}\small\item\em Returns a vector of IDs of servers that are not running (inactive). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages web servers and distributes network requests among them. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_load_balancer_a0c9ed4281450182c76b710a583487363}\index{LoadBalancer@{LoadBalancer}!LoadBalancer@{LoadBalancer}}
+\index{LoadBalancer@{LoadBalancer}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{LoadBalancer()}{LoadBalancer()}}
+{\footnotesize\ttfamily \label{class_load_balancer_a0c9ed4281450182c76b710a583487363} 
+Load\+Balancer\+::\+Load\+Balancer (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{max\+Num\+Servers}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{class_load_balancer}{Load\+Balancer} with a maximum number of servers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Num\+Servers} & Maximum number of servers allowed to be activated. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_load_balancer_ae56b9a73ddcdb52980d5390f2ba7bd69}\index{LoadBalancer@{LoadBalancer}!distributeReq@{distributeReq}}
+\index{distributeReq@{distributeReq}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{distributeReq()}{distributeReq()}}
+{\footnotesize\ttfamily \label{class_load_balancer_ae56b9a73ddcdb52980d5390f2ba7bd69} 
+void Load\+Balancer\+::distribute\+Req (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_request}{Request}} \&}]{request}{, }\item[{int}]{curr\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Gives a request to a server to process only if it is available or adds it to the main queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & The request to distribute. \\
+\hline
+{\em curr\+Time} & The current simulation time. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_load_balancer_a7e1d150d3d33fd80dea013b9ceaa08e7}\index{LoadBalancer@{LoadBalancer}!getNotRunningServers@{getNotRunningServers}}
+\index{getNotRunningServers@{getNotRunningServers}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{getNotRunningServers()}{getNotRunningServers()}}
+{\footnotesize\ttfamily \label{class_load_balancer_a7e1d150d3d33fd80dea013b9ceaa08e7} 
+std\+::vector$<$ int $>$ Load\+Balancer\+::get\+Not\+Running\+Servers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Returns a vector of IDs of servers that are not running (inactive). 
+
+\begin{DoxyReturn}{Returns}
+Vector of inactive server IDs. 
+\end{DoxyReturn}
+\Hypertarget{class_load_balancer_a62df7b94c22e8e16b22d2cd758b7824e}\index{LoadBalancer@{LoadBalancer}!getRequestQueueSize@{getRequestQueueSize}}
+\index{getRequestQueueSize@{getRequestQueueSize}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{getRequestQueueSize()}{getRequestQueueSize()}}
+{\footnotesize\ttfamily \label{class_load_balancer_a62df7b94c22e8e16b22d2cd758b7824e} 
+int Load\+Balancer\+::get\+Request\+Queue\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of remaining requests in the main queue. 
+
+\begin{DoxyReturn}{Returns}
+Number of requests in the queue. 
+\end{DoxyReturn}
+\Hypertarget{class_load_balancer_ae03a6669a9dfc19c26f20811f70e2c9c}\index{LoadBalancer@{LoadBalancer}!getRunningServerCount@{getRunningServerCount}}
+\index{getRunningServerCount@{getRunningServerCount}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{getRunningServerCount()}{getRunningServerCount()}}
+{\footnotesize\ttfamily \label{class_load_balancer_ae03a6669a9dfc19c26f20811f70e2c9c} 
+int Load\+Balancer\+::get\+Running\+Server\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of currently running (active) servers. 
+
+\begin{DoxyReturn}{Returns}
+Number of active servers. 
+\end{DoxyReturn}
+\Hypertarget{class_load_balancer_a4fdab3b7fd1babc229f123515f930108}\index{LoadBalancer@{LoadBalancer}!getRunningServers@{getRunningServers}}
+\index{getRunningServers@{getRunningServers}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{getRunningServers()}{getRunningServers()}}
+{\footnotesize\ttfamily \label{class_load_balancer_a4fdab3b7fd1babc229f123515f930108} 
+vector$<$ int $>$ Load\+Balancer\+::get\+Running\+Servers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Returns a vector of IDs of currently running servers. 
+
+\begin{DoxyReturn}{Returns}
+Vector of active server IDs. 
+\end{DoxyReturn}
+\Hypertarget{class_load_balancer_ae50e1209506da4b238b8aec9d122cbe3}\index{LoadBalancer@{LoadBalancer}!simTime@{simTime}}
+\index{simTime@{simTime}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{simTime()}{simTime()}}
+{\footnotesize\ttfamily \label{class_load_balancer_ae50e1209506da4b238b8aec9d122cbe3} 
+void Load\+Balancer\+::sim\+Time (\begin{DoxyParamCaption}\item[{int}]{curr\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Simulates time step in the system, updates servers and processes queued requests. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em curr\+Time} & The current simulation time. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_load_balancer_8h}{Load\+Balancer.\+h}}\item 
+Load\+Balancer.\+cpp\end{DoxyCompactItemize}
